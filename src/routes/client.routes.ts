@@ -1,10 +1,19 @@
 import express from "express";
+import  ClientController from "../controllers/clientController";
 
-export = (() => {
 
-  const router = express.Router();
+class ClientRoute{
+  private router = express.Router();
+  private clientController = new ClientController();
 
-  // router.get();
+  constructor(){
+    this.router.use('/', this.clientController.getById  );
+  }
 
-  return router;
-})();
+  public build(){
+    return this.router;
+  }
+
+}
+
+export =  new ClientRoute();

@@ -1,8 +1,19 @@
 import express from "express";
-const router = express.Router();
+import clienteRouter =  require('./client.routes');
 
 
-// Se definen las rutas.
+class RouterIndex{
+    private router = express.Router();
+
+    constructor(){
+        this.router.use('/cliente', clienteRouter.build() );
+    }
+
+    public build(){
+        return this.router;
+    }
+
+}
 
 
-export = router;
+export =  new RouterIndex();

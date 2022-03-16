@@ -1,10 +1,12 @@
 import express from "express";
-import routes = require('./routes/index');
+import RouterIndex from './routes/index';
+import dotenv from 'dotenv'
+dotenv.config()
+
 
 
 class Server{
 
-    private PORT = 3000;
     private app: express.Application;
 
     constructor(){
@@ -14,11 +16,11 @@ class Server{
     }
 
     private config(){
-        this.app.set('port', process.env.PORT || this.PORT );
+        this.app.set('port', process.env.HTTP_PORT  );
     }
 
     private routes(){
-        this.app.use('/', routes );
+        this.app.use('/api', RouterIndex.build() );
     }
 
     public start(){
